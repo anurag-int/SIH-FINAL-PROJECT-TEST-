@@ -42,7 +42,7 @@ exports.create_course = async(req, res) => {
         })
     }
 
-
+}
 
 exports.getAllCourses = async(req, res) => {
     try{
@@ -106,7 +106,7 @@ exports.getAllCourses = async(req, res) => {
                 Current_Page : page,
                 data : allCourses
             })
-    }
+        }
     catch(error){
         console.log(error);
 		return res.status(404).json({
@@ -116,4 +116,5 @@ exports.getAllCourses = async(req, res) => {
 		});
 	}
 }
+
 

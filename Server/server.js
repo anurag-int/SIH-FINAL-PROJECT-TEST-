@@ -19,7 +19,7 @@ const userRoutes = require("./routes/User");
 const profileRoutes = require("./routes/Profile");
 const instituteRoutes = require("./routes/Institute");
 const scholarshipRoutes = require("./routes/Scholarship");
-const courseRoutes = require("./routes/Course");
+const courseRoutes = require("./routes/Course"); 
 const Institute_AdminRoutes = require("./routes/Institute_Admin");
 
 app.use(express.json());
