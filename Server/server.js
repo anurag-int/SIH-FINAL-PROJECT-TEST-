@@ -19,7 +19,6 @@ const userRoutes = require("./routes/User");
 const profileRoutes = require("./routes/Profile");
 const instituteRoutes = require("./routes/Institute");
 const scholarshipRoutes = require("./routes/Scholarship");
-const nirfRoutes = require("./routes/Nirf");
 const courseRoutes = require("./routes/Course");
 
 app.use(express.json());
@@ -53,7 +52,6 @@ app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/institute", instituteRoutes);
 app.use("/api/v1/profile", profileRoutes);
 app.use("/api/v1/scholarship", scholarshipRoutes);
-app.use("/api/v1/nirf-ranking", nirfRoutes)
 app.use("/api/v1/course", courseRoutes);
 
 app.get('/', (req, res) => {
