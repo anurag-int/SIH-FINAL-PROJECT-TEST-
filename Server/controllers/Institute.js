@@ -49,7 +49,7 @@ exports.getAllInstitute = async(req, res) => {
 
             const skip = (page - 1) * ITEMS_PER_PAGE;
 
-            const allInstitute = await Institute.find({}, {aicte_id : true, name : true , address : true, address : true, institution_type : true, state : true}).skip(skip).limit(ITEMS_PER_PAGE);
+            const allInstitute = await Institute.find({}, {aicte_id : true, institute_name : true , address : true, institution_type : true, state : true}).skip(skip).limit(ITEMS_PER_PAGE);
             //const totalInstituteRegistered = allInstitute.length;
 
             return res.status(200).json({
@@ -74,15 +74,27 @@ exports.getAllInstitute = async(req, res) => {
 
 exports.addInstitute = async(req, res) => {
     try{
-        const { aicte_id, name, address, district, institution_type, state } = req.body;
+        let { aicte_id, ranking_category, institute_name, city, state, score=null, rank=null, institution_type} = req.body;
 
-        if(!aicte_id || !name || !address || !district || !institution_type || !state){
+        
+        institute_name = institute_name.toLowerCase();
+        city = city.toLowerCase();
+        
+        console.log(ranking_category);
+
+        if(!aicte_id || !ranking_category || !institute_name || !city || !state || !state || !score || !rank || !institution_type){
             return res.status(400).json({
                 success : false,
                 message : "All Fields are Mandatory"
             })
         }
 
+        if(score !== null && rank === null || score === null && score !== null){
+            return res.status(401).json({
+                success : false,
+                message : "score And rank not defined properly"
+            })
+        }
         //check the auth for AICTE-MEMBER or Admin
         const existingID = await Institute.findOne({ aicte_id});
 
@@ -94,12 +106,7 @@ exports.addInstitute = async(req, res) => {
         }
 
         const newInstitution = await Institute.create({
-            aicte_id,
-            name,
-            address,
-            district,
-            institution_type,
-            state
+            aicte_id, ranking_category, institute_name, city, state, score, rank, visited : 0, institution_type
         });
 
         res.status(200).json({
@@ -157,16 +164,16 @@ exports.findInstituteByAicteID = async(req, res) => {
 
 exports.findInstituteByname = async(req, res) => {
     try{
-        const { name } = req.params;
+        const { institute_name } = req.params;
 
-        console.log("here is your name", name);
+        console.log("here is your name", institute_name);
 
-        console.log(`Searching for institute with NAME: ${name}`);
+        console.log(`Searching for institute with NAME: ${institute_name}`);
 
-        const institute = await Institute.findOne({ name: name });
+        const institute = await Institute.findOne({ institute_name});
 
         if(!institute){
-            console.log(`No institute found with AICTE ID: ${ name}`);
+            console.log(`No institute found with AICTE ID: ${institute_name}`);
             return res.status(404).json({
                 success : false,
                 message : "Institute with this NAME not found!"
