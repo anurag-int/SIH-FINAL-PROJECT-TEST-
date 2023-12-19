@@ -9,7 +9,7 @@ const { auth, isAdmin, isFaculty, isAicteMember, isStudent, isInstitute } = requ
 //routes for Institute_Admin
 router.get("/getAllInstitutes", auth, getAllInstitute);
 router.get("/findInstituteByAicteID/:aicte_id", findInstituteByAicteID);
-router.get("/findInstituteByName/:name", findInstituteByname);
+router.get("/findInstituteByName/:institute_name", findInstituteByname);
 
 //routes for Institute Admin
 router.post("/addInstitute", auth, isAdmin, addInstitute);

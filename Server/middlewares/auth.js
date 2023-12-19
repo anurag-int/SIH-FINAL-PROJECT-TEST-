@@ -98,6 +98,25 @@ exports.isAdmin = async(req, res, next) => {
     }
 }
 
+
+exports.isInstituteMember = async(req, res, next) => {
+    try{
+        if(req.user.accountType !== "Institute_Admin"){
+            return res.status(401).json({
+                success : false,
+                message : "This is protected route for Aicte-Members only"
+            })
+        }
+        next();
+    }
+    catch(err){
+        return res.status(500).json({
+            success : false,
+            message : "User role cannot be verified, please try again"
+        })
+    }
+}
+
 exports.isAicteMember = async(req, res, next) => {
     try{
         if(req.user.accountType !== "Aicte-Member"){

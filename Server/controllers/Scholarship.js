@@ -15,7 +15,7 @@ exports.addOrUpdateScholarship = async(req, res) => {
             });
         }
 
-        const existingStudent = await Scholarship.findOne( { student_ID : student_ID });
+        const existingStudent = await Scholarship.findOne( { studentg_ID : student_ID });
         if(existingStudent)
         {
             if(year === existingStudent.year && month === existingStudent.month && amount_released === existingStudent.amount_released){

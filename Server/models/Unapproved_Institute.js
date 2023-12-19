@@ -16,6 +16,6 @@ const unapproved_Institutes_Schema = mongoose.Schema({
 })
 
 
-const unapprovedInstitute = mongoose.model("UnApproved_Institute", unapproved_institute_Schema);
+const unapprovedInstitute = mongoose.model("UnApproved_Institute", unapproved_Institutes_Schema);
 
 module.exports = unapprovedInstitute;
