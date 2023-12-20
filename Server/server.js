@@ -20,7 +20,7 @@ const profileRoutes = require("./routes/Profile");
 const instituteRoutes = require("./routes/Institute");
 const scholarshipRoutes = require("./routes/Scholarship");
 const courseRoutes = require("./routes/Course"); 
-const Institute_AdminRoutes = require("./routes/Institute_Admin");
+const instituteAdminRoutes = require("./routes/Institute_Admin");
 
 app.use(express.json());
 const fileUpload = require("express-fileupload");
@@ -54,7 +54,7 @@ app.use("/api/v1/institute", instituteRoutes);
 app.use("/api/v1/profile", profileRoutes);
 app.use("/api/v1/scholarship", scholarshipRoutes);
 app.use("/api/v1/course", courseRoutes);
-app.use("/api/v1/add-institute-members", Institute_AdminRoutes);
+app.use("/api/v1/add-institute-members", instituteAdminRoutes);
 
 app.get('/', (req, res) => {
     res.send("Home Page");
