@@ -1,7 +1,8 @@
 const Faculty = require("../models/faculty");
 const Student = require("../models/Student"); 
+
 const { successfullyRegistered } = require("../mail/successfullyRegistration");
-const facultyschema = require("../models/faculty");
+const { EventEmitterAsyncResource } = require("nodemailer/lib/xoauth2");
 
 exports.addStudent = async(req, res) => {
     try{
@@ -76,6 +77,44 @@ exports.addFaculty = async(req, res, next) => {
     catch(error){
         console.log(error.message);
         return res.status(400).json({
+            success : false,
+            message : "Internal Server Error"
+        })
+    }
+}
+
+exports.getAllStudents = async(req, res) => {
+    try{
+        const data = await Student.find({});
+        console.log(data);
+        
+        
+        return res.status(200).json({
+            success : true,
+            message : "All Data",
+            data : data 
+        }) 
+    }   
+    catch(err){
+        return res.status(500).json({
+            success : false,
+            message : "Internal Server Error"
+        })
+    }
+}
+
+
+exports.getAllFaculty = async(req, res) => {
+    try{
+        const data = await Faculty.find({});
+        return res.status(200).json({
+            success : true,
+            message : "All Data",
+            data : data 
+        }) 
+    }   
+    catch(err){
+        return res.status(500).json({
             success : false,
             message : "Internal Server Error"
         })
