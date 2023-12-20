@@ -26,7 +26,7 @@ exports.create_course = async(req, res) => {
         await Course.create({
             course_name, institute_name, instructor_name, platform, duration, start_in, course_status
         })
-
+        
         return res.status(200).json({
             success : true,
             message : "Course Added"

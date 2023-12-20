@@ -88,6 +88,7 @@ exports.getAllStudents = async(req, res) => {
         const data = await Student.find({});
         console.log(data);
         
+        
         return res.status(200).json({
             success : true,
             message : "All Data",
