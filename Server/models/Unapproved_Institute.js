@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const unapproved_Institutes_Schema = mongoose.Schema({
-ref_no : {
+    ref_no : {
         type : String,
         required : true
     },

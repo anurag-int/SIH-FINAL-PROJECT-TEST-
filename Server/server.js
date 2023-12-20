@@ -54,7 +54,7 @@ app.use("/api/v1/institute", instituteRoutes);
 app.use("/api/v1/profile", profileRoutes);
 app.use("/api/v1/scholarship", scholarshipRoutes);
 app.use("/api/v1/course", courseRoutes);
-app.use("/api/v1/add-institute-members", Institute_AdminRoutes);
+app.use("/api/v1/institute-members-details", Institute_AdminRoutes);
 
 app.get('/', (req, res) => {
     res.send("Home Page");
