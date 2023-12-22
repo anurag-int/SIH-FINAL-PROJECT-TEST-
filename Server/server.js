@@ -58,7 +58,7 @@ app.use("/api/v1/institute-members-details", instituteAdminRoutes);
 
 
 app.get('/', (req, res) => {
-    res.send("Home Page");
+    res.send("Welcome to Home Page");
 });
 
 app.listen(PORT, ()=> {
